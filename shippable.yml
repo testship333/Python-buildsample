@@ -3,7 +3,6 @@ python:
 language: python
 
 
-
 before_script: mkdir -p shippable/codecoverage shippable/
 
 #install: pip install --use-mirrors -r requirements.txt
