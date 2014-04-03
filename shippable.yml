@@ -4,8 +4,7 @@ language: python
 
 
 before_script: mkdir -p shippable/codecoverage shippable/
-addons:
-  firefox: "21.0"
+
   
 #install: pip install --use-mirrors -r requirements.txt
 
@@ -13,8 +12,7 @@ script:
   - nosetests python/sample.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
   - coverage run --branch python/sample.py
   - coverage xml -o shippable/codecoverage/coverage.xml python/sample.py
-  - firefox --version
-
+  
   
   
   
