@@ -6,7 +6,6 @@ python:
 
 language: python
 
-
 before_script: mkdir -p shippable/codecoverage shippable/
 
   
