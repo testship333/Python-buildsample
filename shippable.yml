@@ -3,12 +3,18 @@ python:
   
 
 language: python
+env:
+    - PYTHON=python
+    - PYVER=2.x
 
 before_script: mkdir -p shippable/codecoverage shippable/
 
   
 #install: pip install --use-mirrors -r requirements.txt
-
+before_install:
+    - if [[ $PYVER == '2.x' ]]; then
+    -   sudo apt-get install ipython
+    - fi
 
 script: 
   - nosetests python/sample.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
