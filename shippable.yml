@@ -10,7 +10,7 @@ env:
 before_script: mkdir -p shippable/codecoverage shippable/
 
   
-#install: pip install --use-mirrors -r requirements.txt
+install: pip install --use-mirrors -r requirements.txt
 before_install:
     - if [[ $PYVER == '3.x' ]]; then
     -   sudo apt-get install ipython
