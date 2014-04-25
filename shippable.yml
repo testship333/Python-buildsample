@@ -12,7 +12,7 @@ before_script: mkdir -p shippable/codecoverage shippable/
   
 #install: pip install --use-mirrors -r requirements.txt
 before_install:
-    - if [[ $PYVER == '2.x' ]]; then
+    - if [[ $PYVER == '3.x' ]]; then
     -   sudo apt-get install ipython
     -   sudo apt-get install python-nose
     -   sudo apt-get install python-matplotlib
