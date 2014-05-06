@@ -1,29 +1,11 @@
 python:
-  - "3.3"
-  
-
+  - "2.7"
 language: python
-env:
-    - PYTHON=python
-    - PYVER=3.x
-
-before_script: mkdir -p shippable/codecoverage shippable/
-
-  
+before_script: mkdir -p shippable/codecoverage shippable/testresults
 install: pip install --use-mirrors -r requirements.txt
-before_install:
-    - if [[ $PYVER == '3.x' ]]; then
-    -   sudo apt-get install ipython
-    -   sudo apt-get install python-nose
-    -   sudo apt-get install python-matplotlib
-    - fi
-
-script: 
+script:
   - nosetests python/sample.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
   - coverage run --branch python/sample.py
   - coverage xml -o shippable/codecoverage/coverage.xml python/sample.py
-  
-  
-  
-  
+
     
