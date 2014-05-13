@@ -11,5 +11,5 @@ script:
   - coverage run --branch python/sample.py
   - coverage xml -o shippable/codecoverage/coverage.xml python/sample.py
 after_success:
-  - git push git@heroku.com:testingci.git master
+  - git push git@heroku.com:python-heroku-prod.git  master
     
