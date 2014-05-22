@@ -1,7 +1,7 @@
 python:
-  - "2.7"
+ # - "2.7"
   - "3.3"
-  - "3.2"
+  - "3.4"
   
 language: python
 before_script: mkdir -p shippable/codecoverage shippable/testresults
@@ -11,5 +11,5 @@ script:
   - coverage run --branch python/sample.py
   - coverage xml -o shippable/codecoverage/coverage.xml python/sample.py
 after_success:
-  - git push git@heroku.com:python-heroku-prod.git  master
+  - git push git@heroku.com:testingci.git  master
     
