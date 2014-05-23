@@ -2,6 +2,7 @@ python:
   - "2.7"
   - "3.3"
   - "3.4"
+  - "2.6"
   
 language: python
 before_script: mkdir -p shippable/codecoverage shippable/testresults
@@ -10,6 +11,6 @@ script:
   - nosetests python/sample.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
   - coverage run --branch python/sample.py
   - coverage xml -o shippable/codecoverage/coverage.xml python/sample.py
-after_success:
-  git push git@heroku.com:testingci.git  master
+#after_success:
+ # git push git@heroku.com:testingci.git  master
     
