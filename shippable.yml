@@ -1,5 +1,5 @@
 python:
-  - "2.7.3"
+  - "2.7"
   #- "3.3"
   #- "3.4"
   #- "2.6"
@@ -15,3 +15,6 @@ script:
 #after_success:
  # git push git@heroku.com:testingci.git  master
     
+matrix:
+ include: 
+  - python: 3.4
