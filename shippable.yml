@@ -18,3 +18,8 @@ script:
 matrix:
  include: 
   - python: 3.4
+after_success:
+  - git push git@heroku.com:python-heroku-prod.git master
+  
+  
+  
