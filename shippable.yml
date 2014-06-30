@@ -1,25 +1,34 @@
 python:
   - "2.7"
-  #- "3.3"
- # - "3.4"
-  #- "2.6"
- 
-  
 language: python
-before_script: mkdir -p shippable/codecoverage shippable/testresults
-#install: pip install --use-mirrors -r requirements.txt
-script:
+
+before_install:
+  - export FOO=1234
+  - export BAZ=567
+  - echo B----- $BAZ
+  - echo F------ $FOO
+  
+install:
+  - echo B==== $BAZ
+  - echo F==== $FOO
+  - pip install --use-mirrors -r requirements.txt
+before_script: 
+  - mkdir -p shippable/codecoverage shippable/testresults
+  - export BAZ=456
+  - echo B---- $BAZ
+  - echo F---- 
+  - for i in {1..10}; do echo BEFORE_SCRIPT ; sleep 1; done
+script: 
+  - for i in {1..10}; do echo SCRIPT ; sleep 1; done
+  - echo B----- $BAZ
+  - echo F-- $FOO
   - nosetests python/sample.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
   - coverage run --branch python/sample.py
   - coverage xml -o shippable/codecoverage/coverage.xml python/sample.py
-#after_success:
- # git push git@heroku.com:testingci.git  master
-    
-matrix:
- include: 
-  - python: 3.4
-after_success:
-  - git push git@heroku.com:python-heroku-prod.git master
+
   
-  
-  
+after_archive:
+  - echo "this is AFTER archive"
+  - echo "=========================="
+  - echo $SHIPPABLE_ARTIFACTS_URL
+  - echo $ARTIFACTS_UPLOAD_SUCCESSFUL
