@@ -6,6 +6,8 @@ env:
  global:
   - secure: EbMJU0RZvDifCSMe252dSLBvbqlE9dPdPJ1EEotOQszjW/e14DhJHOk/J5apvIcxQChLcz3CEhywODtkZS9++QMm9Ue16GtBYGKmAQnuOlOujeuvLTvMaZcqakoTrmHyYWjioKrSUdJxZZM+Pz/3LdknZGRXSLA9ihhfgDNF5ALUQTRThXlqXO43tEIJ8H6O1HNigPKhIJII7n7pgnkzBerGABuqJAf9zZ5gjS0/vBskQXlgH6pBYjVE/64Hk5DEHw//DeOiNPTloOS7xds2HxM+P3DHtyDOMUfMbgoU2P1IvqStIr9wd4r26llivZj6NHXFgGfXi2KAhibj71vHYA==
   - SLACK_ORG=test05 PROJECT=Python-buildsample 
+
+
 before_install:
   - export FOO=1234
   - export BAZ=567
@@ -16,12 +18,14 @@ install:
   - echo B==== $BAZ
   - echo F==== $FOO
   - pip install --use-mirrors -r requirements.txt
+  
 before_script: 
   - mkdir -p shippable/codecoverage shippable/testresults
   - export BAZ=456
   - echo B---- $BAZ
   - echo F---- 
   - for i in {1..10}; do echo BEFORE_SCRIPT ; sleep 1; done
+
 script: 
   - for i in {1..10}; do echo SCRIPT ; sleep 1; done
   - echo B----- $BAZ
@@ -29,8 +33,10 @@ script:
   - nosetests python/sample.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
   - coverage run --branch python/sample.py
   - coverage xml -o shippable/codecoverage/coverage.xml python/sample.py
+
 after_failure:
   - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN
+
 after_success:
   - python slack_notifier.py --project $PROJECT --org $SLACK_ORG --token $SLACK_TOKEN -s
   
